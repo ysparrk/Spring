@@ -2,12 +2,14 @@
 
 package yspark.startspring.repository;
 
+import org.springframework.stereotype.Repository;
 import yspark.startspring.domain.Member;
 
 import java.util.*;
 
 // 구현체
 // 0. 초기 설정
+@Repository // 스프링이 controller, service, repository를 가져온다.
 public class MemoryMemberRepository implements MemberRepository { // option + enter -> implements methods
     // key = id, value = member, Map import 하기
     private static Map<Long, Member> store = new HashMap<>(); // 실무에서는 동시성 문제로 공유되는 변수 일때는 ConcurrentHashMap 사용

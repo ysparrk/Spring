@@ -1,5 +1,7 @@
 package yspark.startspring.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import yspark.startspring.domain.Member;
 import yspark.startspring.repository.MemberRepository;
 import yspark.startspring.repository.MemoryMemberRepository;
@@ -7,10 +9,12 @@ import yspark.startspring.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service // 스프링이 확인하고 MemberService를 스프링 컨테이너에 등록시켜준다.
 public class MemberService {
     // test와 인스턴스 같게 하기
     private final MemberRepository memberRepository;
     // new 레포를 직접 생성하는 것이 아니라 외부에서 넣어주도록 바꿔준다.
+    @Autowired // memberRepository가 필요한 것을 알고 스프링이 넣어준다
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
