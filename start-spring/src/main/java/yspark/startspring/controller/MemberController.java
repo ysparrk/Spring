@@ -12,16 +12,16 @@ public class MemberController {
 
     // 스프링이 관리하게 되면 스프링 컨테이너로 등록하고 스프링 컨테이너로부터 받아서 쓸 수 있도록 바꿔야 한다.
 
-    private MemberService memberService;
+    private final MemberService memberService;
     // setter 주입(cmd + n)
-    @Autowired
-    public void setMemberService(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
-    // 생성자 생성(cmd+N)
-//    @Autowired // 생성자 호출, memberService를 스프링이 스프링 컨테이너에 있는 memberService를 가져다가 연결시켜준다.
-//    public MemberController(MemberService memberService) {
+//    @Autowired
+//    public void setMemberService(MemberService memberService) {
 //        this.memberService = memberService;
 //    }
+
+    // 생성자 생성(cmd+N)
+    @Autowired // 생성자 호출, memberService를 스프링이 스프링 컨테이너에 있는 memberService를 가져다가 연결시켜준다.
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 }
