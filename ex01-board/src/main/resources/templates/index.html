@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+  <button onclick="createReq()">글작성</button>
+  <a href="/board/create">글작성(링크)</a>
+</body>
+
+<!--========================JS===========================-->
+<script>
+  <!--요즘 사용하는 함수 정의 방식-->
+  const createReq = () => {
+    location.href = "/board/create";
+  }
+</script>
+
+</html>
