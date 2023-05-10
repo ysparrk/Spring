@@ -46,5 +46,21 @@ public class BoardController {
         model.addAttribute("board", boardDTO); // 모델에 담기
         return "detail";
     }
+
+    // 3. UPDATE==================================================
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        BoardDTO boardDTO = boardService.findByID(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        BoardDTO board = boardService.update(boardDTO); // 수정
+        model.addAttribute("board", board); // 수정이 반영된 객체를 detail로 가져간다
+        return "detail"; // 수정하고나서 상세 페이지로
+//        return "redirect:/board/" + boardDTO.getId(); // 이 방법은 조회수에 영향줄 수 있음
+    }
 }
 

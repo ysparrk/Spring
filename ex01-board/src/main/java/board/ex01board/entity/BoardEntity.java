@@ -31,7 +31,7 @@ public class BoardEntity extends BaseEntity { // BaseEntity를 상속
     @Column
     private int boardHits;
 
-    // DTO -> Entity 변환 (Entity class)
+    // Create : DTO -> Entity 변환 (Entity class)
     public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
@@ -42,5 +42,16 @@ public class BoardEntity extends BaseEntity { // BaseEntity를 상속
         return boardEntity;
     }
 
+    // Update : Entity 변환
+    public static BoardEntity toUpdateEntitiy(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setId(boardDTO.getId()); // id를 set하는 부분이 반드시 포함 -> id값이 있어야 update query 전달 가능
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(boardDTO.getBoardHits()); // 가져온 hits값 그대로 적용
+        return boardEntity;
+    }
 }
 
