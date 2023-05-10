@@ -60,4 +60,9 @@ public class BoardService {
         boardRepository.save(boardEntity);
         return findByID(boardDTO.getId());
     }
+
+    // 4. DELETE==================================================
+    public void delete(Long id) {
+        boardRepository.deleteById(id); // 삭제만 처리
+    }
 }

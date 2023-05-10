@@ -62,5 +62,12 @@ public class BoardController {
         return "detail"; // 수정하고나서 상세 페이지로
 //        return "redirect:/board/" + boardDTO.getId(); // 이 방법은 조회수에 영향줄 수 있음
     }
+
+    // 4. DELETE===================================================
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        boardService.delete(id);
+        return "redirect:/board/";
+    }
 }
 
