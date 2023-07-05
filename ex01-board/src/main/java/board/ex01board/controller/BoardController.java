@@ -84,8 +84,21 @@ public class BoardController {
 //        pageable.getPageNumber();  // 몇 페이지인지
         Page<BoardDTO> boardList = boardService.paging(pageable);  // 페이지 값을 가져옴
 
-        // page 갯수가 총 20개
+        /* page 갯수가 총 20개라면
+        * 현재 사용자가 3페이지라면, user가 있는 페이지는 프론트에서 다르게 보인다 + 링크되어있지 않음
+        * 밑에 보여지는 페이지 갯수는 3개
+        * 총 페이지 갯수 8개라면, 7 8만 보여야 한다 -> endPage
+        *  */
 
+        int blockLimit = 3; // 밑에 보여지는 페이지 갯수
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; // 1 4 7 10 ... 이 나온다
+        int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages(); // 3 6 9 12 15 ...
+
+        // model에 값을 담아서 paging.html로 간다
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        return "paging";
     }
 
 }
