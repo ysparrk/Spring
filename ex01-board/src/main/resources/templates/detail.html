@@ -34,7 +34,7 @@
   </tr>
 
 </table>
-<button onclick="listReq()">목록</button>
+<button onclick="listReq()">목록</button> <!--페이지 값을 주소 상으로 같이 가져가게 한다-->
 <button onclick="updateReq()">수정</button>
 <button onclick="deleteReq()">삭제</button>
 
@@ -43,7 +43,7 @@
     const listReq = () => {
         console.log("목록 요청");
         const page = [[${page}]];
-        location.href = "/board/";
+        location.href = "/board/paging?page="+page;
     }
     const updateReq = () => {
         console.log("수정 요청");
